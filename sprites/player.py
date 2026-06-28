@@ -59,7 +59,7 @@ class Player(Actor):
 
     def next_step(self):
 
-        if self.in_motion and self.frame < 3:
+        if self.in_motion and self.frame <= len(self.walk_frames):
             self.frame+=1
         else:
             self.frame = 0
