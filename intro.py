@@ -18,7 +18,9 @@ class Game:
 
     def set_state(self,state):
         pass
-
+    
+    def get_state(self):
+        return self.current_state
 
     def draw(self):
         screen.clear()
@@ -26,7 +28,7 @@ class Game:
 
         self.player.draw()
         self.zombie.draw()
-        print(self.current_state)
+        print(self.get_state())
 
         screen.draw.text(
             f"Score: {self.score}",
