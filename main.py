@@ -1,4 +1,5 @@
 import pgzrun
+from ui.menu import Menu
 from sprites.player import Player
 from sprites.zombie import Zombie
 
@@ -9,8 +10,10 @@ class Game:
     def __init__(self):
         self.states  = ("UI", "Game", "Score")
         self.current_state = self.states[0]
+        self.menu = Menu()
         self.player = Player("player/idle", (50, 50))
         self.zombie = Zombie("zombie/idle",(200,200))
+        
         self.score = 0
 
     def update(self):
@@ -26,16 +29,20 @@ class Game:
         screen.clear()
         screen.fill((100, 100, 200))
 
-        self.player.draw()
-        self.zombie.draw()
-        print(self.get_state())
+        if self.get_state() == "UI":
+            self.menu.draw(screen)
+        else:
 
-        screen.draw.text(
-            f"Score: {self.score}",
-            (20, 10),
-            color="black",
-            fontsize=42,
-        )
+            self.player.draw()
+            self.zombie.draw()
+            print(self.get_state())
+
+            screen.draw.text(
+                f"Score: {self.score}",
+                (20, 10),
+                color="black",
+                fontsize=42,
+            )
 
 
 game = Game()
