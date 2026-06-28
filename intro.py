@@ -7,6 +7,8 @@ HEIGHT: 720
 
 class Game:
     def __init__(self):
+        self.states  = ("UI", "Game", "Score")
+        self.current_state = self.states[0]
         self.player = Player("player/idle", (50, 50))
         self.zombie = Zombie("zombie/idle",(200,200))
         self.score = 0
@@ -14,12 +16,17 @@ class Game:
     def update(self):
         self.player.update()
 
+    def set_state(self,state):
+        pass
+
+
     def draw(self):
         screen.clear()
         screen.fill((100, 100, 200))
 
         self.player.draw()
         self.zombie.draw()
+        print(self.current_state)
 
         screen.draw.text(
             f"Score: {self.score}",
