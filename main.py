@@ -2,9 +2,8 @@ import pgzrun
 from ui.menu import Menu
 from sprites.player import Player
 from sprites.zombie import Zombie
+from ui.settings import WIDTH, HEIGHT,BACKGROUND_COLOR
 
-WIDTH: 1280
-HEIGHT: 720
 
 class Game:
     def __init__(self):
@@ -17,20 +16,32 @@ class Game:
         self.score = 0
 
     def update(self):
-        self.player.update()
+         if self.current_state == "Game":
+            self.player.update()
 
     def set_state(self,state):
-        pass
+         if state in self.states:
+            self.current_state = state
     
     def get_state(self):
         return self.current_state
 
+    def on_key_down(self, key):
+
+        if self.current_state == "UI":
+
+            state = self.menu.on_key_down(key)
+
+            if state:
+                self.set_state(state)
+
     def draw(self):
         screen.clear()
-        screen.fill((100, 100, 200))
+        screen.fill(BACKGROUND_COLOR)
 
         if self.get_state() == "UI":
             self.menu.draw(screen)
+            
         else:
 
             self.player.draw()
@@ -45,9 +56,13 @@ class Game:
             )
 
 
+
+
 game = Game()
 
-
+def on_key_down(key):
+    game.on_key_down(key)
+    
 def update():
     game.update()
 
