@@ -3,11 +3,11 @@ from pgzero.actor import Actor
 from pgzero.clock import clock
 from ui.settings import WIDTH, HEIGHT
 
-class Zombie(Actor):
+
+class Robot(Actor):
 
     def __init__(self, image, pos):
         super().__init__(image, pos)
-
         
         self.speed = 1
         self.dx = 0
@@ -19,17 +19,17 @@ class Zombie(Actor):
         self.walk_frames = {
             
             "right" : [
-            "zombie/walk_right_1",
-            "zombie/walk_right_2",
-            "zombie/walk_right_3",
-            "zombie/walk_right_4",
+            "robot/walk_right_1",
+            "robot/walk_right_2",
+            "robot/walk_right_3",
+            "robot/walk_right_4",
             ],
 
             "left": [
-            "zombie/walk_left_1",
-            "zombie/walk_left_2",
-            "zombie/walk_left_3",
-            "zombie/walk_left_4",
+            "robot/walk_left_1",
+            "robot/walk_left_2",
+            "robot/walk_left_3",
+            "robot/walk_left_4",
             ]
         }
         clock.schedule_interval(self.next_step, 0.12)
@@ -61,14 +61,11 @@ class Zombie(Actor):
         if  self.frame <= len(self.walk_frames):
             self.frame+=1
         else:
-            
-
             self.frame = 0
         
     def update(self,score):
         
         self.image = self.walk_frames[self.direction][self.frame]
-      
             
         self.timer -= 1
 
@@ -79,7 +76,6 @@ class Zombie(Actor):
         self.x += self.dx * self.speed
         self.y += self.dy * self.speed
 
-        
         if self.left <= 0:
             self.left = 0
             self.change_direction()
@@ -95,9 +91,9 @@ class Zombie(Actor):
         if self.bottom >= HEIGHT:
             self.bottom = HEIGHT
             self.change_direction()
+
+
+
         
-     
+        self.speed = 1 + score * 0.8
 
-
-    
-        self.speed = 1 + score * 0.5

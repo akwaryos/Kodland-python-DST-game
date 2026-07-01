@@ -34,4 +34,24 @@ class Menu():
             gcolor = "green"
             )
         
+        screen.draw.text(
+            "press esc to quit",
+            center = (WIDTH/2,HEIGHT/1.3),
+            fontsize=48,
+            color = "gray",
+            # background = "gray",
+            owidth=1,
+            gcolor = "green"
+            )
+        
+        screen.draw.text(
+            "press CTRL to mute/unmute",
+            center = (WIDTH/2,HEIGHT/1.6),
+            fontsize=48,
+            color = "gray",
+            # background = "gray",
+            owidth=1,
+            gcolor = "green"
+            )
+        
         
