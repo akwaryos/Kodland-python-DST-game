@@ -93,7 +93,6 @@ class Player(Actor):
 
         if self.in_motion:
             self.image = self.walk_frames[self.direction][self.frame]
-            print(self.image)
 
         else:
             self.image = "player/idle"
